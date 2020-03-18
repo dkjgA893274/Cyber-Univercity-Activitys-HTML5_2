@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mサンプル5-3</title>
+    <style>
+      /*CSSのエリア*/
+      #box1{border:1px solid red;}
+    </style>
+  </head>
+  <body>
+    <!-- コンテンツのエリア -->
+    <p>色ネーム：<input type="text" id="input1"></p>
+    <p><button onclick="change1();">変更</button></p>
+    <p id="box1">こんにちは！</p>
+    <script>
+      //JavaScriptのエリア
+      function change1(){
+        var input1 = document.getElementById("input1");
+        var box1 = document.getElementById("box1");
+        box1.style.color = input1.value;
+      }
+    </script>
+  </body>
+</html>

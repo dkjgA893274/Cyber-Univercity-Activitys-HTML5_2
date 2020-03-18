@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>サンプル5-4</title>
+		<style>
+			/*CSSのエリア*/
+			#box1{
+				width:200px;
+				padding:3px;
+				font-size:16px;
+				border:1px solid gray;
+				text-align:right;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- コンテンツのエリア -->
+		<p><input type="text" id="input1"></p>
+		<p><input type="text" id="input2"></p>
+		<p><button onclick="btn1();">合計</button></p>
+		<p id="box1">結果</p>
+		<script>
+			//JavaScriptのエリア
+			function btn1(){
+				var input1 = document.getElementById("input1");
+				var input2 = document.getElementById("input2");
+				var box1 = document.getElementById("box1");
+				var total1= parseFloat(input1.value) + parseFloat(input2.value);
+				box1.innerHTML = total1;
+			}
+		</script>
+	</body>
+</html>
