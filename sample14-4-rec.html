@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>sample14-4-rec</title>
+    <style>
+      *{margin:0;padding:0;}
+      ol{list-style:none;}
+      h1,li{margin:1em;font-size:16px;}
+      
+    </style>
+  </head>
+  <body>
+    <h1>音声認識</h1>
+    <ol>
+      <li>言語：
+        <select id=lang>
+          <option value="ja-JP">日本語</option>
+          <option value="en-US" selected>英語</option>
+        </select>
+      </li>
+
+      <li><button onclick="recognition1();">認識する</button></li>
+      <li><p id="output1">認識した内容</p></li>
+    </ol>
+
+    <script>
+      //音声認識
+      function recognition1(){
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = document.getElementById("lang").value;
+        recognition.start();
+
+        recognition.addEventListener('result',function(e){
+          var rec = e.results.item(0).item(0).transcript;
+          document.getElementById("output1").innerHTML= rec;
+        });
+      }
+    </script>
+  </body>
+</html>

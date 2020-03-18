@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>sample13-1</title>
+    <meta name="viewport" content="width=322">
+    <link rel="stylesheet" href="Msample13-2.css">
+    <!-- Google Map API -->
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyByeAvrNnIuzNXzCMDrSYyjjMVP2xoDagA"></script> 
+  </head>
+  <body>
+    <div id="wrap">
+      <h1>Geolocation</h1>
+	
+      <!-- 情報表示部分 -->
+		<div class="flex">
+			<div id="msg">メッセージ</div>
+			<button onclick="getMap()">取得</button>
+		</div>
+		
+		<ul>
+			<li id="chizu">地図</li>
+			<li   id="ido">緯度</li>
+			<li id="keido">経度</li>
+			<li  id="kodo">高度</li>
+		</ul>
+	
+	</div>
+    
+	<script>
+      //① 使用できるかのチェック
+		if(navigator.geolocation){
+			document.getElementById("msg").innerHTML="使用できます";
+		}else{
+			document.getElementById("msg").innerHTML="使用できません";
+		}
+	  
+	  //② Android用オプション値
+		var option={enableHighAccuracy:true,timeout:10000,maximumAge:0};
+
+      //③ 取得関数起動
+		function getMap(){
+			navigator.geolocation.getCurrentPosition(seiko,shippai,option);
+		}
+		
+      //④ 成功したときの関数
+		function seiko(position){
+        	//④-1 値を取得
+         	var ido = position.coords.latitude;
+			var keido = position.coords.longitude;
+			var kodo = position.coords.altitude;
+			
+        	//④-2 値を表示
+         	document.getElementById("ido").innerHTML = "緯度:"+ido;
+			document.getElementById("keido").innerHTML = "経度:"+keido;
+			document.getElementById("kodo").innerHTML = "高度:"+kodo;
+
+        	//④-3 地図を描画
+         	var chizu = document.getElementById("chizu");
+			var genzaichi = new google.maps.LatLng(ido,keido);
+			var gmap = new google.maps.Map(
+  			chizu,
+  			{zoom:12,center:genzaichi,
+  			mapTypeId:google.maps.MapTypeId.ROADMAP}
+		   );
+			
+        	//④-4 マーカを表示
+       		var marker = new google.maps.Marker(
+  				{position:genzaichi,map:gmap}
+			);
+			var infoWindow = new google.maps.InfoWindow(
+  				{content:"現在地"}
+			);
+			infoWindow.open(gmap,marker);
+      	}
+       
+      //⑤ 失敗
+		function shippai(err){
+		   alert("失敗しました。エラーコードは" ＋ err.code + "。メッセージは" + err.message + "です。");
+        }
+    </script>
+  </body>
+</html>

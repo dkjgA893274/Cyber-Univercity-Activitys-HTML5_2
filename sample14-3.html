@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>sample14-3</title>
+		<style>
+
+		</style>
+	<head>
+	<body>
+		<h1>WebAudio API</h1>
+		<p>音量：<input id="vol" type="range" min="0" max="1" value="0.5" step="0.1"></p>
+
+		<script>
+			//①-1. 初期化
+			var hz = [523.251, 587.330, 659.255, 698.456, 783.991, 880, 987.767, 1046.502];
+			var code = [49,50,51,52,53,54,55,56];    //キーコード
+			var ac = new AudioContext();    //音の元を作る
+			var vcg = ac.createGain();    //ボリュームを作る
+			var vco = new Array();
+
+			//①-2. 音階を作る
+			for(var i=0;i<hz.length;i++){
+			  ini(i);
+			  vco[i].type = "triangle";  //音色
+			}
+
+			//①-3. 出力につなぐ
+			vcg.connect(ac.destination);
+
+			//② キーをおした時
+			window.addEventListener("keydown",function(e){
+			  var i = code.indexOf(e.keyCode);
+			  vcg.gain.value = document.getElementById("vol").value; //音量
+			  vco[i].type = "sine";    //音色:square,triangle,sawtooth
+			  vco[i].start();
+			});
+
+			//③キーを離した時
+			window.addEventListener("keyup",function(e){
+			  var i = code.indexOf(e.keyCode);
+			  vco[i].stop();
+			  ini(i);
+			});
+
+			function ini(i){
+				vco[i]=ac.createOscillator();  //音源を作る
+				vco[i].connect(vcg);  //音源をボリュームにつなぐ
+				vco[i].frequency.value=hz[i];  //周波数を設定
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>sample14-4</title>
+		<style>
+			*{font-size:16px;margin:0.5em;padding:0.3px;}
+		</style>
+	</head>
+	<body>
+		<h1>テキスト読み上げ</h1>
+		<ol>
+			<li>テキスト入力<br>
+			<textarea id="input1">Hello World.</textarea>
+		</li>
+		<li>
+			<button onclick="voice();">音声データ選択</button>
+			<select id="voice"></select>
+		</li>
+		<li>言語：
+			<select id=lang>
+				<option value="ja-JP">日本語</option>
+				<option value="en-US" selected>英語</option>
+			</select>
+		</li>
+		<li><button onclick="speech1();">読み上げます</button></li>
+
+		<script>
+			//①バグのため
+			var voices = speechSynthesis.getVoices();
+
+			//②読み上げ可能な音声リストを取得
+			function voice(){
+			  voices = speechSynthesis.getVoices();      //②-1
+			  var voiceStr;      //②-2
+			  for(var i=0;i<voices.length;i++){      //②-3
+				if(voices[i]){
+				  voiceStr += "<option value="+i+">"+voices[i].name+"</option>";
+				}
+			  }
+			  document.getElementById("voice").innerHTML = voiceStr;      //②-4
+			}
+			//③再生
+			function speech1(){
+
+			}
+		</script>
+	</body>
+</html>

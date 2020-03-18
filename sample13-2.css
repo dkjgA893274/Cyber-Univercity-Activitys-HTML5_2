@@ -1,0 +1,28 @@
+﻿*{
+	margin:0;padding:0;
+	box-sizing:border-box;
+}
+
+#wrap{
+	margin:0 auto;
+	width:320px;
+	border:1px solid gray;
+	background-color:white;
+}
+
+h1{text-align:center;}
+
+.flex{display:flex;}
+.flex>*{flex:1;}
+
+button{
+	width:100%;
+	font-size:20px;
+	border:1px solid gray;
+	background-color:#ddd;
+}
+
+ul{list-style:none;}
+li:nth-of-type(odd){background-color:#eee;}
+
+#chizu{width:318px; height:245px;}
