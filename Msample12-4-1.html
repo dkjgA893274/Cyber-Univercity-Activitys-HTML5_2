@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Msample12-4-1</title>
+  <style> 
+    * {margin:0; padding:0;}
+    p{text-align:center;}
+    #canvas1{border:1px solid gray;}
+  </style>
+</head>
+<body>
+  <p><canvas id="canvas1" width="320" height="480"></canvas></p>
+ 
+  <script>
+    var canvas1 = document.getElementById("canvas1"); 
+    var ctx1 = canvas1.getContext("2d");
+ 
+    //変数の設定と初期化
+    var target = {x:250, y:100, dir:1};
+    var player = {x:250, y:400};
+    var ball = {x:-10, y:-10};
+    var point = 0;
+	
+	var targetImage=new Image();
+	var playerImage=new Image();
+	var ballImage  =new Image();
+
+	targetImage.src = "target.png";
+	playerImage.src = "player.png";
+	ballImage.src   = "ball.png";
+
+	var audio1 = new Audio();
+	audio1.src = "audio1.mp3";
+
+    //一定時間毎起動させる
+    setInterval(game1,50);
+ 
+    //game1関数
+    function game1(){
+      ctx1.clearRect(0,0,320,480);
+ 
+      //ターゲット
+		ctx1.drawImage(targetImage, target.x-25, target.y-25, 50, 50);
+ 
+      //得点
+      ctx1.fillStyle = "black";
+      ctx1.font = "20px sans-serif ";
+      ctx1.fillText(point,target.x,target.y-5);
+ 
+      //プレーヤ
+      ctx1.drawImage(playerImage, player.x-25, player.y-25, 50, 50);
+ 
+      //描画(ボール)
+		ctx1.drawImage(ballImage, ball.x-5, ball.y-5, 10, 10);
+ 
+      //移動計算
+      target.x += target.dir;
+      ball.y -= 5;
+ 
+      if(target.x < 25 || 295 < target.x){target.dir *= -1;}
+ 
+      //得点
+      if ((ball.y === 100) && (Math.abs(target.x - ball.x)<25)){
+        point++;
+		audio1.play();
+      }
+    }
+ 
+    //シュート
+    canvas1.addEventListener("mousedown",function(){
+      ball.x = player.x;
+      ball.y = player.y; 
+    });
+   
+    //playerコントロール
+    canvas1.addEventListener("mousemove",function(e){
+      var rect = e.target.getBoundingClientRect();
+      player.x = e.clientX-rect.left;
+    });
+  </script>
+</body>
+</html>

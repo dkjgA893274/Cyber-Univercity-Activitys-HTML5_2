@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <mata charset="utf-8">
+    <title>Msample12-2-1</title>
+    <style>
+      #canvas1{border:1px solid gray;}
+      p{text-align:center;}
+    </style>
+  </head>
+  <body>
+    <p><canvas id="canvas1" width="300" height="200"></canvas></p>
+     
+    <script>
+		var canvas1=document.getElementById("canvas1");
+		var ctx1=canvas1.getContext("2d");
+      
+		//変数の設定と初期化
+		var target = {x:100, y:100, dir:1};
+		
+		//関数の定義と実行
+		setInterval(game1,50);			//関数の実行
+		
+		function game1(){				//関数の定義
+		//１画面をクリア
+		ctx1.clearRect(0,0,300,200);
+		
+		//２画面
+		ctx1.fillStyle = "blue";
+		ctx1.fillRect(target.x,target.y,50,50);
+		
+		//３−１移動計算
+		target.x += target.dir;
+		
+		//３−２壁衝突計算
+		if(target.x < 0 || 250 < target.x){
+		   target.dir *= -1;
+		   }
+	}		
+    </script>
+  </body>
+</html>
