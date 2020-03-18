@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>サンプル6-3</title>
+    <style>
+	  #date1{
+	  	margin:0 auto;
+		font-size:30px;
+		color:blue;
+		text-align:center;
+		font-weight:bold;
+		font-family:sans-serif;
+		border:1px solid gray;
+		width:400px;height:100px;
+		line-height:100px;
+        }
+    </style>
+  </head>
+  <body>
+    <p id="date1"></p>
+   
+    <script>
+      var date1 = document.getElementById("date1");
+	  
+	  setInterval(clock1,1000);
+	  function clock1(){
+      var now = new Date();
+      var h = now.getHours();
+      var i = now.getMinutes();
+      var s = now.getSeconds();
+      date1.innerHTML = h+"時"+i+"分"+s+"秒";
+      }
+	</script>
+  </body>
+</html>

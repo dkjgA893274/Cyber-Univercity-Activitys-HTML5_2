@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>サンプル6-4</title>
+    <style>
+		#date1{
+			background-image:url(bg.png);
+			background-size:100% 100%;
+			}
+    </style>
+  </head>
+  <body>
+    <canvas id="date1" width="300" height="300"></canvas>
+ 
+    <script>
+      var date1 = document.getElementById("date1");
+ 	  var ctx1  = date1.getContext("2d"); 
+      setInterval(clock1,1000);
+       
+      function clock1(){
+        var now = new Date();
+        var h = now.getHours();
+        var i = now.getMinutes();
+        var s = now.getSeconds();
+        hdeg = h/6*Math.PI;
+		ideg = i/30*Math.PI;
+		sdeg = s/30*Math.PI;
+ 
+		ctx1.clearRect(0,0,300,300);
+ 
+		ctx1.strokeStyle="red";
+		ctx1.beginPath();
+		ctx1.moveTo(150,150);
+		ctx1.lineTo(150+Math.sin(hdeg)*100,150-Math.cos(hdeg)*100);
+		ctx1.stroke();
+ 
+		ctx1.strokeStyle="green";
+		ctx1.beginPath();
+		ctx1.moveTo(150,150);
+		ctx1.lineTo(150+Math.sin(ideg)*130,150-Math.cos(ideg)*130);
+		ctx1.stroke();
+ 
+		ctx1.strokeStyle="blue";
+		ctx1.beginPath();
+		ctx1.moveTo(150,150);
+		ctx1.lineTo(150+Math.sin(sdeg)*140,150-Math.cos(sdeg)*140);
+		ctx1.stroke();
+      }
+    </script>
+  </body>
+</html>
