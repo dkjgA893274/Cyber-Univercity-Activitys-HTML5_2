@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <mata charset="utf-8">
+    <title>sample11-4-1</title>
+    <style>
+      #canvas1{border:1px solid gray;}
+      p{text-align:center;}
+    </style>
+  </head>
+  <body>
+    <p><canvas id="canvas1" width="300" height="300"></canvas></p>
+    <p>開始角度<input type="range" id="input1" max="360" value="0"></p>
+	<p>終了角度<input type="range" id="input2" max="360" value="0"></p>
+	<p><button onclick="btn1();">ボタン 1</button></p>
+    
+	<script>
+      var canvas1=document.getElementById("canvas1");
+      var ctx1=canvas1.getContext("2d");
+	  
+	  //input Element 取得
+	  	var input1 = document.getElementById("input1");
+		var input2 = document.getElementById("input2");
+
+		function btn1(){
+		//①値の取得
+		var angle1=parseFloat(input1.value);
+		var angle2=parseFloat(input2.value);
+		//②描画の消去
+		ctx1.clearRect(0,0,300,300);
+		//③円弧を描画
+		var a1=angle1/180*Math.PI;
+		var a2=angle2/180*Math.PI;
+		
+		ctx1.beginPath();
+		ctx1.moveTo(150,150);
+		ctx1.arc(150,150,100,a1,a2,false);
+		ctx1.closePath();
+		ctx1.fillStyle="blue";
+		ctx1.fill();
+		ctx1.lineWidth=5;
+		ctx1.strokeStyle="pink";
+		ctx1.stroke();
+	}
+	
+    </script>
+  </body>
+</html>

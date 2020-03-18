@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <mata charset="utf-8">
+    <title>sample10-2-1</title>
+    <style>
+		#canvas1{border:1px solid gray;}
+		p{text-align:center;}
+    </style>    
+  </head>
+  <body>
+	<P><canvas id="canvas1" width="200" height="200"></canvas></p>
+    <script>
+		var canvas1 = document.getElementById("canvas1");
+		var ctx1 = canvas1.getContext("2d");
+		
+		//矩形
+		ctx1.fillStyle="red";
+		ctx1.fillRect(10,10,80,80);
+		
+		//消去
+		ctx1.clearRect(20,30,60,40);
+		
+		//枠の矩形
+		ctx1.strokeStyle="green";
+		ctx1.strokeRect(105,5,90,90);
+		
+		//格子状
+		ctx1.fillStyle="red";
+		ctx1.fillRect(10,110,30,30);
+		ctx1.fillRect(10,150,30,30);
+		ctx1.fillRect(50,110,30,30);
+		ctx1.fillRect(50,150,30,30);
+		
+		//色違い
+		ctx1.fillStyle="red";
+		ctx1.fillRect(110,110,40,40);
+		ctx1.fillStyle="blue";
+		ctx1.fillRect(110,150,40,40);
+		ctx1.fillStyle="yellow";
+		ctx1.fillRect(150,110,40,40);
+		ctx1.fillStyle="green";
+		ctx1.fillRect(150,150,40,40);
+		
+    </script>
+  </body>
+</html>

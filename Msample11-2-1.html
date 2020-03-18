@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <mata charset="utf-8">
+    <title>sample11-2-1</title>
+    <style>
+      #canvas1{border:1px solid gray;}
+      p{text-align:center;}
+    </style>
+  </head>
+  <body>
+    <p><canvas id="canvas1" width="300" height="300"></canvas></p>
+    <p>データ1<input type="range" id="input1" max="300"></p>
+	<p>データ2<input type="range" id="input2" max="300"></p>
+	<p>データ3<input type="range" id="input3" max="300"></p> 
+	<p><button onclick="btn1();">ボタン 1</button></p>
+    
+	<script>
+      var canvas1=document.getElementById("canvas1");
+      var ctx1=canvas1.getContext("2d");
+	  
+	  //input Element 取得
+	  	var input1 = document.getElementById("input1");
+		var input2 = document.getElementById("input2");
+		var input3 = document.getElementById("input3"); 
+
+		function btn1(){
+	  
+	  	//①値の取得
+		var h1=parseFloat(input1.value);
+		var h2=parseFloat(input2.value);
+	  	var h3=parseFloat(input3.value);
+		  
+		//②描画の取得
+		ctx1.clearRect(0,0,300,300);
+
+		//③矩形を描画
+		ctx1.fillStyle="red";
+		ctx1.fillRect(0,300,100,-h1);
+		ctx1.fillRect(100,300,100,-h2);
+		ctx1.fillRect(200,300,100,-h3);
+		
+	}
+	  
+    </script>
+  </body>
+</html>

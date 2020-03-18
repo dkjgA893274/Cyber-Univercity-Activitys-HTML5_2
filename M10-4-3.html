@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <mata charset="utf-8">
+    <title>sample10-4-3</title>
+    <style>
+      #canvas1{border:1px solid gray;}
+      p{text-align:center;}
+    </style>
+  </head>
+  <body>
+    <p><canvas id="canvas1" width="200" height="200"></canvas></p>
+    <script>
+      var canvas1=document.getElementById("canvas1");
+      var ctx1=canvas1.getContext("2d");
+       
+		//画像
+		var image1=new Image();
+		image1.src="image1.png";
+		image1.onload = function(){
+			ctx1.drawImage(image1,50,50,100,100)
+			 }
+ 
+ 
+    </script>
+  </body>
+</html>
